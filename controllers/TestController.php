@@ -59,6 +59,7 @@ class TestController extends Controller
             echo '通过验证';
         }else{
             echo '没有通过验证';
+
             var_dump($content);
         }
     }
