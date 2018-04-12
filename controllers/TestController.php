@@ -60,6 +60,7 @@ class TestController extends Controller
         }else{
             echo '没有通过验证';
             echo '没有通过验证';
+            echo '没有通过验证--release';
             var_dump($content);
         }
     }
