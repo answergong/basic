@@ -7,7 +7,7 @@
  * Time: 14:46
  */
 
-namespace app\services\logs;
+namespace app\common\services\logs;
 
 
 abstract class BaseOlog

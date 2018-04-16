@@ -6,7 +6,7 @@
  * Time: 14:56
  */
 
-namespace app\services\logs;
+namespace app\common\services\logs;
 
 
 use app\libraries\Tool;

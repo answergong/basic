@@ -6,13 +6,13 @@
  * @author        gongxiangzhu <gongxiangzhu@km.com>
  */
 
-namespace app\services\logs;
+namespace app\common\services\logs;
 
 use yii\helpers\ArrayHelper;
 
 class ApiOLog extends BaseOLog
 {
-    const SPECIAL_STATUS = [1 => '我最6'];
+//    const SPECIAL_STATUS = [1 => '我最6'];
 
     public $operation = '接口报错:%s->%s';
 

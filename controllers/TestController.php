@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\libraries\Tool;
 use app\models\Player;
+use app\models\searches\PlayerSearch;
 use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
@@ -62,15 +63,39 @@ class TestController extends Controller
     public function actionIndex()
     {
         $page = Yii::$app->request->get('page');
-        $offset =
+        $offset = ($page - 1) * $this->limit;
         $query = Player::find();
         $count = $query->count();
         //获得分页数据
         $pagination = new Pagination(['totalCount' => $count, 'pageSize' => $this->limit]);
         $this->data['pagination'] = $pagination;
         //获得列表数据
-        $this->data['players'] = $query->asArray()->all();
+        $this->data['players'] = $query
+            ->limit($this->limit)
+            ->offset($offset)
+            ->asArray()
+            ->all();
         return $this->render('index', $this->data);
+    }
+
+    /**
+     * 自定义分页
+     *
+     * @author   gongxiangzhu
+     * @dateTime 2018/4/16 19:45
+     *
+     * @param  integer $id
+     * @param  string  $name
+     *
+     * @return mixed
+     */
+    public function actionPagination()
+    {
+        $search = new PlayerSearch();
+        $dataProvider = $search->search();
+        $this->data['pagination'] = $dataProvider->pagination;
+        $this->data['players'] = $dataProvider->getModels();
+        return $this->render('pagination', $this->data);
     }
 
     public function actionCheck1()
