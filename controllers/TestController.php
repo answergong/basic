@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\libraries\Tool;
 use app\models\Player;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -14,6 +15,19 @@ use app\models\ContactForm;
 
 class TestController extends Controller
 {
+    /**
+     * 分页每一页显示的条数
+     *
+     * @var String $limit
+     */
+    public $limit = 5;
+    /**
+     * 数据数组
+     *
+     * @var array $data
+     */
+    public $data = [];
+
     /**
      * {@inheritdoc}
      */
@@ -47,17 +61,31 @@ class TestController extends Controller
      */
     public function actionIndex()
     {
-        $model = new Player();
-        return $this->render('gxz',['model' => $model]);
-//        return $this->render('index', ['model' => $model]);
+        $page = Yii::$app->request->get('page');
+        $offset =
+        $query = Player::find();
+        $count = $query->count();
+        //获得分页数据
+        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => $this->limit]);
+        $this->data['pagination'] = $pagination;
+        //获得列表数据
+        $this->data['players'] = $query->asArray()->all();
+        return $this->render('index', $this->data);
     }
-    public function actionCheck(){
+
+    public function actionCheck1()
+    {
+        return $this->render('preg');
+    }
+
+    public function actionCheck()
+    {
         $request = Yii::$app->request;
         $content = $request->post('content');
         $res = Tool::checkFilter($content);
-        if ($res){
+        if ($res) {
             echo '通过验证';
-        }else{
+        } else {
             echo '没有通过验证';
             echo '没有通过验证';
             echo '没有通过验证--release';
