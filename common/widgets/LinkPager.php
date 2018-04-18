@@ -56,7 +56,7 @@ class LinkPager extends \yii\widgets\LinkPager
     public $lastPageLabel = true;
 
     public $hideOnSinglePage = false;
-
+    public $pageSizeParam = true;
     /**
      * @var string 下一页按钮内容
      */
@@ -75,6 +75,7 @@ class LinkPager extends \yii\widgets\LinkPager
      */
     public $disabledPageCssClass = '';
     public $disabledListItemSubTagOptions = ['class' => 'g-page-disabled'];
+
     public function init()
     {
         parent::init();
@@ -108,6 +109,7 @@ class LinkPager extends \yii\widgets\LinkPager
         }
         return Html::tag($tag, $start . '-' . $end . '/' . $this->pagination->totalCount . '条记录', $options);
     }
+
     protected function renderPageButtons()
     {
         $pageCount = $this->pagination->getPageCount();
