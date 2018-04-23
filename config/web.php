@@ -19,8 +19,13 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+//        'user' => [
+//            'identityClass' => 'app\models\User',
+//            'enableAutoLogin' => true,
+//        ],
+        //后台用户模块
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\UserBackend',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -53,7 +58,7 @@ $config = [
         'assetManager' => [
             'bundles' => [
                 'dmstr\web\AdminLteAsset' => [
-                    'skin' => 'skin-red',
+                    'skin' => 'skin-purple',
                 ],
             ],
         ],
