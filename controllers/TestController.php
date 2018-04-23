@@ -118,4 +118,9 @@ class TestController extends Controller
         }
     }
 
+    public function actionJianshu()
+    {
+        return $this->render('jianshu');
+    }
+
 }
