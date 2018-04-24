@@ -2,8 +2,10 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'My Yii Application 首页';
+use app\models\UserBackend;
 ?>
+<p><?= '欢迎'.UserBackend::findIdentity(Yii::$app->user->id)['username']; ?></p>
 <div class="site-index">
 
     <div class="jumbotron">

@@ -1,19 +1,72 @@
 <?php
+/**
+ * 后台用户表的操作控制器
+ *
+ * @copyright (c) 2018 上海快猫文化传媒有限公司
+ * @author        gongxiangzhu <gongxiangzhu@km.com>
+ */
 
 namespace app\controllers;
 
 
-
 use app\models\SignupForm;
 use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 
 class UserBackendController extends \yii\web\Controller
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        // 当前rule将会针对这里设置的actions起作用，如果actions不设置，默认就是当前控制器的所有操作
+                        'actions' => [ 'view', 'create', 'update', 'delete', 'signup'],
+                        // 设置actions的操作是允许访问还是拒绝访问
+                        'allow' => true,
+                        // @ 当前规则针对认证过的用户; ? 所有方可均可访问
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        // 自定义一个规则，返回true表示满足该规则，可以访问，false表示不满足规则，也就不可以访问actions里面的操作啦
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->id == 2 ? true : false;
+                        },
+                        'allow' => true,
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * 首页方法
+     *
+     * @author   gongxiangzhu
+     * @dateTime 2018/4/24 14:22
+     *
+     * @return mixed
+     */
     public function actionIndex()
     {
         return $this->render('index');
     }
 
+    /**
+     * 用户注册
+     *
+     * @author
+     * @dateTime 2018/4/24 14:22
+     *
+     * @return mixed
+     */
     public function actionSignup()
     {
         // 实例化一个表单模型，这个表单模型我们还没有创建，等一下后面再创建
