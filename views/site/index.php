@@ -3,9 +3,17 @@
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application 首页';
+
 use app\models\UserBackend;
+
 ?>
-<p><?= '欢迎'.UserBackend::findIdentity(Yii::$app->user->id)['username']; ?></p>
+<p><?= '欢迎' . UserBackend::findIdentity(Yii::$app->user->id)['username']; ?></p>
+<!--form 表单-->
+<form method="post" action="<?= \yii\helpers\Url::to('index.php?r=site%2Flogout') ?>">
+    <input type="hidden" name="_csrf" value="<?= Yii::$app->request->csrfToken ?>"/>
+    <input type="submit" value="退出登录" class="btn btn-primary">
+</form>
+
 <div class="site-index">
 
     <div class="jumbotron">

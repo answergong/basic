@@ -37,7 +37,7 @@ class UserBackendController extends \yii\web\Controller
                         'actions' => ['index'],
                         // 自定义一个规则，返回true表示满足该规则，可以访问，false表示不满足规则，也就不可以访问actions里面的操作啦
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->id == 2 ? true : false;
+                            return Yii::$app->user->id == 1 ? true : false;
                         },
                         'allow' => true,
                     ],
