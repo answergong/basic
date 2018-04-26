@@ -24,9 +24,9 @@ class BlogController extends Controller
         return [
             //附加行为
 //            'myBehavior' => MyBehavior::class,
-            'as access' => [
-                'class' => AccessControl::class,
-            ],
+//            'as access' => [
+//                'class' => AccessControl::class,
+//            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [

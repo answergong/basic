@@ -1,5 +1,8 @@
 <?php
 
+use app\common\components\AccessControl;
+use app\common\components\MyBehavior;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -62,15 +65,19 @@ $config = [
                 ],
             ],
         ],
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
     ],
+    //权限控制,通过行为控制
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'site/login',
+            '*',
+            //这里是允许访问的action，不受权限控制
+            //controller/action
+        ]
+    ],
+//    'as myBehavior2' => MyBehavior::class,
+//    'as access' => AccessControl::class,
     'params' => $params,
 ];
 //var_dump(YII_ENV_DEV);DIE;
