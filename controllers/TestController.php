@@ -100,7 +100,7 @@ class TestController extends Controller
 
     public function actionCheck1()
     {
-        return $this->render('preg');
+        return $this->renderPartial('preg');
     }
 
     public function actionCheck()

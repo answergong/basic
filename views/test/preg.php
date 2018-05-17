@@ -11,7 +11,8 @@ use yii\helpers\Html;
 ?>
 
 <form method="post" action="/test/check">
-    <input type="text" name="content">
+    <textarea required name="content" cols="50" rows="10"></textarea>
+<!--    <input type="textarea" name="content">-->
     <input name="_csrf" type="hidden" id="_csrf" value="<?= Yii::$app->request->csrfToken ?>">
     <input type="submit" value="检测">
 </form>
@@ -19,12 +20,3 @@ use yii\helpers\Html;
 <html>
 <body>
 
-<?php
-$number = 123;
-$txt = sprintf("带有两位小数：%1\$.8f
-<br>不带小数：%1\$u",$number);
-echo $txt;
-?>
-
-</body>
-</html>
