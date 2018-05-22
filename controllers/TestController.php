@@ -62,6 +62,7 @@ class TestController extends Controller
      */
     public function actionIndex()
     {
+        phpinfo();die;
         $page = Yii::$app->request->get('page');
         $offset = ($page - 1) * $this->limit;
         $query = Player::find();
